@@ -31,27 +31,31 @@ namespace AspDotNetCoreApi.Controllers
 
         // GET api/<StatesController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public State Get(int id)
         {
-            return "value";
+            var state = _stateRepository.GetStateById(id);
+            return state;
         }
 
         // POST api/<StatesController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Post(State state)
         {
+            _stateRepository.InsertState(state);
         }
 
         // PUT api/<StatesController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public void Put(State state)
         {
+            _stateRepository.UpdateState(state);
         }
 
         // DELETE api/<StatesController>/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            _stateRepository.DeleteState(id);
         }
     }
 }
